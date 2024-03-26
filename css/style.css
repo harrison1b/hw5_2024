@@ -1,0 +1,159 @@
+/* need to make logo grow from small to large  + chnage opacity*/
+/* o to 1 opacity  */
+/* 25px to 475px */
+@keyframes logo-move{
+  0% {
+    width: 25px;
+    opacity: 0;
+  }
+  100% {
+    width: 475px;
+    opacity: 1;
+  }
+}
+/* animation grow 5 sec + stay at 475 */
+#logo {
+    animation: logo-grow 5s;
+    width:475px;
+}
+/* /* Edit the body element to use the Poppins font (using Google fonts) with serif as a backup.  It should also use the image “concrete_seamless.png” as a background-image with a backup color of #f1f1f1. */
+body{
+    font-family: Poppins, serif;
+    background-image: url(../images/concrete_seamless.png);
+    background-color: #f1f1f1;
+}
+/* add in column format for small mobile view for content + flex so chnages mkae sense for sizing */
+header{
+    display: flex;
+    justify-content: center;
+    /* header centering here */
+    align-items: center;
+}
+/* help ensure nav bar changes properly via flex */
+.nav_links{
+    display: flex;
+    flex-direction: column;
+}
+/* chnages color but will not stay changed as needed */
+.nav_item a:visited {
+    text-decoration: none;
+    color: blue;
+    /*  does not stay the same after visited ,, need fixing */
+}
+/* round out border to look like image + flex for consistnecy */
+.card{
+    flex-basis: 450px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+}
+.card > header{
+    background-color: #288088;
+    /* time to add border */
+    border: 2px solid #45ADAD;
+    padding: 20px 0;
+    /* same type of rounding for border occuring here too */
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+}
+/* wrapping ensures that content goes to next flow responsively */
+.pricing {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* horizontal + vertical centering */
+    justify-content: center;
+    align-items: center;
+}
+/* gallery of content here*/
+/* space-evenly helps to make spacing between gallery content even / look clean  */
+.gallery{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.gallery img{
+    border: 10px solid #50c7c7;
+    margin: 10px;
+    width: 300px;
+}
+@media screen and (min-width:900px){
+    header{
+        /* center for justify content may help card */
+        align-items: flex-start;
+        flex-direction: row;
+        justify-content: center;
+    }
+    /* here we are going to use space-between to help put the logo / links where they need to be unlike before */
+    .img header {
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    /* this should affect first one and should put it above other elements w Z */
+    header:first-child{
+        position: sticky;
+        /* sticky can make it stick even with  movement */
+        z-index: 1;
+    }
+    /* this should affect the nav links and make them go in a row */
+    /* flex end should move to right */
+    .nav_links{
+        display:flex;
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+    /* width 275px + need to shrink and grow to fit */
+    .card{
+        width:275px;
+        /* double check flex not sure if this is working properly */
+        flex: 1 1 auto;
+    }
+}
+/* this should affect the logo and make it not move ,, this is an accessibility measurement */
+@media (prefers-reduced-motion) {
+    #logo {
+        animation: none;
+    }
+}
+/* this is a media query for a view of the page printed out in portrait form / view */
+@media print and (orientation: portrait) {
+    /* changing font and taking out the background image for this view */
+    /* helvetica is the backup */
+    body {
+        font-family: "Arial", "Helvetica";
+        background-image: none;
+    }
+    .nav_links {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    /* working on right side  */
+    /* with larger size no wrap so it is all in one row / area */
+    /* height does not matter here */
+    .pricing{
+        align-items: flex-end;
+        flex-wrap: nowrap;
+    }
+    /* instructed to use flex-basis of 325 */
+    .card{
+        border: 2px solid #45adad;
+        flex-basis: 325px;
+
+    }
+    .card > header{
+        background-color: #288088;
+        border: 2px solid #45adad;
+        padding: 20px 0;
+    }
+    /* we need to get rid of gallery so we will remove its display basically */
+    .gallery{
+        display: none;
+    }
+    /* gallery has id tag too have to account for this and remove it   */
+     /* remove meaning displauy:none */
+    #gallery{
+        display: none;
+    }
+}
+/* note when using print view: You may have to update your print settings to include background graphics - */
